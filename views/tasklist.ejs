@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #ui {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        form{
+            margin: 20px 20px;
+        }
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("navbar") -%>
+        <form action="/task/taskupdate" method="post">
+            <input type="text" id="name" name="name" placeholder="name">
+            <input type="text" id="title" name="title" placeholder="title">
+            <input type="text" id="des" name="des" placeholder="des">
+            <input type="url" id="img" name="img" placeholder="img">
+            <input type="text" name="_id" id="id">
+            <input type="submit" value="update">
+        </form>
+        <div id="ui"></div>
+</body>
+<script>
+    fetch("/task/tasklist")
+        .then((res) => res.json())
+        .then((data) => {
+            data.map((ele) => {
+                let img = document.createElement("img")
+                img.src = ele.img
+                let title = document.createElement("h2")
+                title.innerHTML = ele.title
+                let name = document.createElement("h4")
+                name.innerHTML = ele.name
+                let des = document.createElement("p")
+                des.innerHTML = ele.des
+                let del = document.createElement("button")
+                del.innerHTML = "DELETE"
+                del.addEventListener("click", () => {
+                    fetch(`/task/taskdel/${ele._id}`, {
+                        method: "DELETE",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify()
+                    })
+                })
+                let update = document.createElement("button")
+                update.innerHTML = "UPDATE"
+                update.addEventListener("click", () => {
+                    document.getElementById("name").value = ele.name
+                    document.getElementById("title").value = ele.title
+                    document.getElementById("des").value = ele.des
+                    document.getElementById("img").value = ele.img
+                    document.getElementById("id").value = ele._id
+                })
+
+                let div = document.createElement("div")
+                div.append(img, title, name, des, del , update)
+                document.getElementById("ui").append(div)
+            })
+        })
+        .catch((err) => console.log(err))
+</script>
+
+</html>

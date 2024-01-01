@@ -1,0 +1,18 @@
+const express = require("express")
+const connect = require("./config/db")
+const cookies = require("cookie-parser")
+const Uroute = require("./routes/user.routes")
+const Troute = require("./routes/task.route")
+const app = express()
+app.use(cookies())
+app.set("view engine" , "ejs")
+app.set("views" , (__dirname + "/views"))
+app.use(express.json())
+app.use(express.urlencoded({extended : true}))
+app.use("/user" , Uroute)
+app.use("/task" , Troute)
+
+app.listen(8090 , () =>{
+    connect()
+    console.log("port start is 8090")
+})

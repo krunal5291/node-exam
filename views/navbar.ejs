@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header{
+            padding: 15px 25px;
+            background-color: black;
+        }
+        header nav ul{
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+        }
+        header nav ul li a{
+            text-transform: capitalize;
+            color: white;
+            text-decoration: none;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/user/register">register</a></li>
+                <li><a href="/user/login">login</a></li>
+                <li><a href="/task/taskform">taskform</a></li>
+                <li><a href="/task/taskui">all task</a></li>
+                <li><a href="/task/tasklistui">tasklist</a></li>
+                <li><a href="/user/logout">logout</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            width: 400px;
+            height: 400px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 40px;
+            border: 2px solid black;
+            background-color: aqua;
+            border-radius: 15px;
+            text-align: center;
+        }
+        form h1{
+            color: white;
+            text-transform: uppercase;
+        }
+        input{
+            display: block;
+            margin-top: 20px;
+            margin-left: 45px;
+            padding: 10px 15px;
+        }
+        select{
+            text-align: center;
+        }
+        #submit{
+            text-align: center;
+            margin-left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("navbar") -%>
+    <form action="/user/register" method="post">
+        <h1>singup</h1>
+        <input type="text" name="username" placeholder="enter your name">
+        <input type="email" name="email" placeholder="enter your mail">
+        <input type="password" name="password" placeholder="enter your password">
+        <input type="text" name="role" placeholder="enter your role">
+        <input type="submit" value="singup" id="submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #ui{
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4 , 1fr);
+        }
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("navbar") -%>
+    <div id="ui"></div>
+</body>
+<script>
+    fetch("/task/taskdata")
+    .then((res) => res.json())
+    .then((data) =>{
+        data.map((ele) =>{
+            let img = document.createElement("img")
+            img.src = ele.img
+            let title = document.createElement("h2")
+            title.innerHTML = ele.title
+            let name = document.createElement("h4")
+            name.innerHTML = ele.name
+            let des = document.createElement("p")
+            des.innerHTML = ele.des
+            let div = document.createElement("div")
+            div.append(img , title , name , des)
+            document.getElementById("ui").append(div)
+        })
+    })
+</script>
+</html>
